@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar        { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track  { background: transparent; }
+  ::-webkit-scrollbar-thumb  { background: #d1d5db; border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+  /* Remove number input spinners */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  input[type="number"] { -moz-appearance: textfield; }
+}
+
+@layer utilities {
+  .animate-enter {
+    animation: toastEnter 0.2s cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
+  }
+  .animate-leave {
+    animation: toastLeave 0.15s ease-in forwards;
+  }
+
+  @keyframes toastEnter {
+    0%   { transform: translateY(-8px) scale(0.96); opacity: 0; }
+    100% { transform: translateY(0)    scale(1);    opacity: 1; }
+  }
+  @keyframes toastLeave {
+    0%   { transform: translateY(0)    scale(1);    opacity: 1; }
+    100% { transform: translateY(-6px) scale(0.96); opacity: 0; }
+  }
+}
