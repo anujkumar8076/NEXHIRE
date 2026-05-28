@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL:     import.meta.env.VITE_API_URL || 'https://nexhire-backend-br6y.onrender.com',
+  baseURL: "https://nexhire-backend-br6y.onrender.com/api",
   withCredentials: true,
   timeout:     15000,
 });

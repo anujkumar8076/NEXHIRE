@@ -20,10 +20,17 @@ dotenv.config();
 const app        = express();
 const httpServer = http.createServer(app);
 
+/* ── DEFINED FIRST ───────────────────────────────────────────────────── */
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173",
+  "https://nexhire-sand.vercel.app",
+];
+
 /* ── Socket.io ──────────────────────────────────────────────────────── */
 export const io = new Server(httpServer, {
   cors: {
-    origin: allowedOrigins,
+    origin: allowedOrigins, // ✅ Now it knows what allowedOrigins is!
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -32,11 +39,6 @@ initSocketHandler(io);
 
 /* ── Core middleware ─────────────────────────────────────────────────── */
 app.use(helmet());
-const allowedOrigins = [
-  "http://localhost:3000",
-  "http://localhost:5173",
-  "https://nexhire-sand.vercel.app",
-];
 
 app.use(
   cors({
