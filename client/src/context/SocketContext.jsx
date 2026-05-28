@@ -25,9 +25,14 @@ export const SocketProvider = ({ children }) => {
       return;
     }
 
+    // ✅ FIX: Changed the fallback URL to your live Render backend
     const socket = io(
-      import.meta.env.VITE_SOCKET_URL || "http://localhost:8000",
-      { query: { userId: user._id }, transports: ["websocket","polling"], withCredentials: true }
+      import.meta.env.VITE_SOCKET_URL || "https://nexhire-backend-br6y.onrender.com",
+      { 
+        query: { userId: user._id }, 
+        transports: ["websocket", "polling"], 
+        withCredentials: true 
+      }
     );
     sockRef.current = socket;
 
